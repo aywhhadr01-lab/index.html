@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة أ/ ريهام زكريا - علم النفس والاجتماع</title>
+    <!-- استدعاء خطوط عربية مزخرفة وجميلة -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&family=Cairo:wght@400;600;800&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #2D5A27;
+            --secondary-color: #D4AF37;
+            --bg-color: #F4F7F4;
+            --text-color: #2C3E50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        /* الهيدر والعنوان المزخرف */
+        header {
+            background: linear-gradient(135deg, #1e3c1a, #2D5A27);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .calligraphy-title {
+            font-family: 'Amiri', serif;
+            font-size: 3.2rem;
+            color: var(--secondary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* حاوي المحتوى الرئيسي */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+        }
+
+        /* القسم الجانبي والصورة */
+        .sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            height: fit-content;
+        }
+
+        .teacher-img {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 12px;
+            border: 4px solid var(--secondary-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+        }
+
+        .sidebar h3 {
+            color: var(--main-color);
+            margin-bottom: 10px;
+        }
+
+        /* منطقة شرح المنهج */
+        .main-content {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            color: var(--main-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .unit-card {
+            background: #f9fbf9;
+            border-right: 5px solid var(--main-color);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+
+        .unit-card h3 {
+            color: var(--main-color);
+            margin-bottom: 12px;
+        }
+
+        .summary-box {
+            background: #fff8e7;
+            border: 1px dashed var(--secondary-color);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+        .summary-box h4 {
+            color: #b8860b;
+            margin-bottom: 8px;
+        }
+
+        /* بوت الأسئلة (Chatbot) */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 360px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .chat-header {
+            background: var(--main-color);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-body {
+            height: 300px;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #f4f4f4;
+        }
+
+        .msg {
+            padding: 10px 14px;
+            border-radius: 12px;
+            max-width: 85%;
+            font-size: 0.9rem;
+        }
+
+        .bot-msg {
+            background: white;
+            color: var(--text-color);
+            align-self: flex-start;
+            border-bottom-right-radius: 2px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .user-msg {
+            background: var(--main-color);
+            color: white;
+            align-self: flex-end;
+            border-bottom-left-radius: 2px;
+        }
+
+        .faq-buttons {
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #ddd;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .faq-btn {
+            background: #eef5ee;
+            color: var(--main-color);
+            border: 1px solid var(--main-color);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .faq-btn:hover {
+            background: var(--main-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .chatbot-container {
+                width: 90%;
+                left: 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر باسم المعلمة المزخرف -->
+    <header>
+        <h1 class="calligraphy-title">مِسْ رِيهَام زَكَرِيَّا</h1>
+        <p class="subtitle">منصة الرؤى الفلسفية وعلم النفس (Philosophical Insights)</p>
+    </header>
+
+    <div class="container">
+        <!-- الشريط الجانبي يحتوي على الصورة والمعلومات -->
+        <div class="sidebar">
+            <img src="56331.jpg" alt="مِس ريهام زكريا" class="teacher-img">
+            <h3>أ/ ريهام زكريا</h3>
+            <p>خبيرة علم النفس والفلسفة للثانوية العامة والبكالوريا.</p>
+            <hr style="margin: 15px 0;">
+            <p><strong>شعارات الحكمة:</strong></p>
+            <p style="font-style: italic; color: #555;">"γνῶθι σεαυτόν" (اعرف نفسك)</p>
+        </div>
+
+        <!-- المحتوى الرئيسي: شرح وتلخيص منهج علم النفس -->
+        <div class="main-content">
+            <h2 class="section-title">مراجعة وشرح منهج علم النفس (الصف الثاني الثانوي / البكالوريا)</h2>
+
+            <!-- الوحدة الأولى -->
+            <div class="unit-card">
+                <h3>الوحدة الأولى: نشأة علم النفس وتطوره ومدارسه</h3>
+                <p>مر علم النفس بثلاث مراحل أساسية حتى أصبح علماً مستقلاً:</p>
+                <ul>
+                    <li><strong>المرحلة الفلسفية:</strong> اهتمت بدراسة ماهية الروح والنفس.</li>
+                    <li><strong>المرحلة الفسيولوجية:</strong> ارتبطت بمختبر "فونوت" واستخدام التجربة.</li>
+                    <li><strong>المرحلة الاستقلالية:</strong> اعتبرت السلوك الظاهري هو موضوع علم النفس الأساسي.</li>
+                </ul>
+                <div class="summary-box">
+                    <h4>💡 تلخيص سريع للوحدة الأولى:</h4>
+                    <p>أبرز المدارس: البنائية (فونوت - الاستبطان)، السلوكية (واطسون - السلوك الظاهر)، التحليل النفسي (فرويد - اللاشعور)، الجشطلت (كوفكا - الإدراك الكلي)، والمعرفية (سكنر/سبرمان - العمليات المعرفية).</p>
+                </div>
+            </div>
+
+            <!-- الوحدة الثانية -->
+            <div class="unit-card">
+                <h3>الوحدة الثانية: الدوافع والحوافز في السلوك الإنساني</h3>
+                <p>الدفع هو قوة داخلية تحرك الفرد لتحقيق هدف معين لإعادة التوازن. تشمل الدوافع نوعين:</p>
+                <ul>
+                    <li><strong>دوافع أولية (فطرية/فسيولوجية):</strong> مثل الجوع، العطش، والتنفس.</li>
+                    <li><strong>دوافع ثانوية (اجتماعية/نفسية):</strong> مثل الإنجاز، حب الاستطلاع، والسيطرة.</li>
+                </ul>
+                <div class="summary-box">
+                    <h4>💡 تلخيص سريع للوحدة الثانية:</h4>
+                    <p>الحاجة تخلق التوتر ⬅ التوتر يولد الدافع ⬅ الدافع يوجه السلوك نحو الهدف ⬅ إرضاء الحاجة يُعيد التوازن النفسي والفسيولوجي.</p>
+                </div>
+            </div>
+
+            <!-- الوحدة الثالثة -->
+            <div class="unit-card">
+                <h3>الوحدة الثالثة: الانفعالات والعمليات المعرفية</h3>
+                <p>الانفعال هو حالة وجدانية تعتري الإنسان وتؤثر على سلوكه وخبرته الذاتية ووظائفه الفسيولوجية (مثل الخوف، الغضب، والفرح).</p>
+                <div class="summary-box">
+                    <h4>💡 تلخيص سريع للوحدة الثالثة:</h4>
+                    <p>الانفعالات المعتدلة تنشط الفكر والتفكير، بينما الانفعالات الشديدة تسبب تشتت التفكير وعمى البصيرة.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- بوت المساعدة المباشر (Chatbot) -->
+    <div class="chatbot-container">
+        <div class="chat-header">
+            <span>🤖 مساعد علم النفس (مِس ريهام)</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="msg bot-msg">أهلاً بك يا بطل! أنا المساعد الذكي لمادة علم النفس. اضغط على أي سؤال بالأسفل لإجابتك فوراً:</div>
+        </div>
+        <div class="faq-buttons" id="faqButtons">
+            <!-- 10 أسئلة سيتم إنشاؤها عبر التفاعلية -->
+        </div>
+    </div>
+
+    <script>
+        // 10 أسئلة وإجابات نموذجية في منهج علم النفس
+        const qaList = [
+            { q: "1. ما هو تعريف علم النفس؟", a: "علم النفس هو الدراسة العلمية لسلوك الإنسان والحيوان كاستجابة لمختلف المثيرات." },
+            { q: "2. ما هي مراحل تطور علم النفس؟", a: "مر بثلاث مراحل: 1- المرحلة الفلسفية (الروح)، 2- المرحلة الفسيولوجية (التجربة)، 3- المرحلة الاستقلالية (السلوك)." },
+            { q: "3. ما هو منهج الاستبطان؟", a: "هو ملاحظة الشخص لنفسه وتأمله لذاته لتأمل ما يدور بها من خبرات شعورية (أسسه فونوت في المدرسة البنائية)." },
+            { q: "4. الفرق بين الحافز والدافع؟", a: "الحافز: ينشأ من حاجة فسيولوجية (مثل تقلصات المعدة عند الجوع). الدافع: مفهوم أعم يشمل الجانب الفسيولوجي والنفسي للتوجه نحو الهدف." },
+            { q: "5. رائد مدرسة التحليل النفسي؟", a: "مؤسسها هو العالم سيجموند فرويد، وركزت على أثر التماسات والخبرات المبكرة للطفولة واللاشعور." },
+            { q: "6. ما هي قانون الإدراك في مدرسة الجشطلت؟", a: "مبدأ أن 'الكل أكبر من مجموع أجزائه'، أي أننا ندرك الشيء ككل أولاً ثم ندرك تفاصيله." },
+            { q: "7. ما هي فوائد دراسة الدوافع؟", a: "تساعدنا على تفسير سلوك الآخرين والتنبؤ به، وزيادة رغبة الفرد في التعلم والإنجاز." },
+            { q: "8. ما التغيرات الفسيولوجية للانفعال؟", a: "مثل تغير ضغط الدم، سرعة ضربات القلب، اتساع حدقة العين، وجفاف الحلق عند الخوف." },
+            { q: "9. ما الفرق بين المثير والاستجابة؟", a: "المثير: أي عامل خارجي أو داخلي ينشط الكائن الحي. الاستجابة: كل نشاط يقوم به الكائن رداً على هذا المثير." },
+            { q: "10. كيف يؤثر الانفعال الشديد على التفكير؟", a: "الانفعال الشديد يؤدي إلى ضعف القدرة على التفكير المنطقي، الجمود الفكري، وتشويه الإدراك." }
+        ];
+
+        const chatBody = document.getElementById('chatBody');
+        const faqButtons = document.getElementById('faqButtons');
+
+        // عرض الأسئلة كأزرار
+        qaList.forEach((item, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'faq-btn';
+            btn.innerText = item.q;
+            btn.onclick = () => askQuestion(item.q, item.a);
+            faqButtons.appendChild(btn);
+        });
+
+        function askQuestion(question, answer) {
+            // إضافة سؤال المستخدم
+            const userDiv = document.createElement('div');
+            userDiv.className = 'msg user-msg';
+            userDiv.innerText = question;
+            chatBody.appendChild(userDiv);
+
+            // إضافة إجابة البوت
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'msg bot-msg';
+                botDiv.innerText = answer;
+                chatBody.appendChild(botDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 300);
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+    </script>
+</body>
+</html>
